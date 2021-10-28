@@ -20,7 +20,10 @@ public class PersonDataAccessService_One implements PersonDatabase {
                 person.getFirst_name(),
                 person.getSecond_name(),
                 person.getEmail_address(),
-                person.getMobile_number()));
+                person.getMobile_number(),
+                person.getDate_of_birth(),
+                person.getAge()
+        ));
         return 1;
     }
 
@@ -58,7 +61,10 @@ public class PersonDataAccessService_One implements PersonDatabase {
                                 update.getFirst_name(),
                                 update.getSecond_name(),
                                 update.getEmail_address(),
-                                update.getMobile_number()));
+                                update.getMobile_number(),
+                                update.getDate_of_birth(),
+                                update.getAge()
+                        ));
                         return 1;
                     }
                     return 0;

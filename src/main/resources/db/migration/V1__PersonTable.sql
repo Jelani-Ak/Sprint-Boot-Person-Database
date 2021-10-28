@@ -4,5 +4,8 @@ CREATE TABLE person
     first_name    VARCHAR(100) NOT NULL,
     second_name   VARCHAR(100) NOT NULL,
     email_address VARCHAR(100) NOT NULL,
-    mobile_number VARCHAR(100) NOT NULL
+    mobile_number VARCHAR(100) NOT NULL,
+    date_of_birth DATE         NOT NULL,
+    age           INT          NOT NULL
 )
+

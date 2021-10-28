@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -27,7 +28,9 @@ public class PersonDataAccessService_Two implements PersonDatabase {
         String second_name = resultSet.getString("second_name");
         String email_address = resultSet.getString("email_address");
         String mobile_number = resultSet.getString("mobile_number");
-        return new Person(personID, first_name, second_name, email_address, mobile_number);
+        Date date_of_birth = resultSet.getDate("date_of_birth");
+        int age = resultSet.getInt("age");
+        return new Person(personID, first_name, second_name, email_address, mobile_number, date_of_birth, age);
     }
 
     @Override
@@ -37,13 +40,13 @@ public class PersonDataAccessService_Two implements PersonDatabase {
 
     @Override
     public List<Person> getAllPeople() {
-        final String sql = "SELECT id, first_name, second_name, email_address, mobile_number FROM person";
+        final String sql = "SELECT id, first_name, second_name, email_address, mobile_number, date_of_birth, age FROM person";
         return jdbcTemplate.query(sql, PersonDataAccessService_Two::mapRow);
     }
 
     @Override
     public Optional<Person> getPersonByID(UUID id) {
-        final String sql = "SELECT id, first_name, second_name, email_address, mobile_number FROM person WHERE id = ?";
+        final String sql = "SELECT id, first_name, second_name, email_address, mobile_number, date_of_birth, age FROM person WHERE id = ?";
         Person person = jdbcTemplate.queryForObject(sql, new Object[]{id}, PersonDataAccessService_Two::mapRow);
         return Optional.ofNullable(person);
     }
